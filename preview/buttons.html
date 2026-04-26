@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css"><style>
+  html,body{margin:0;height:100%;background:var(--bg-1);overflow:hidden;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:14px;justify-content:center;align-items:flex-start}
+  .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  button{font-family:var(--font-body);font-size:14px;font-weight:600;border-radius:10px;padding:10px 18px;border:none;cursor:pointer;transition:all .12s ease-out;letter-spacing:-.005em}
+  .primary{background:var(--brand-cyan);color:#0a1524;box-shadow:0 0 0 1px rgba(23,212,250,.4),0 0 18px rgba(23,212,250,.35)}
+  .primary:hover{background:var(--brand-cyan-bright);box-shadow:0 0 0 1px rgba(92,230,255,.55),0 0 28px rgba(23,212,250,.55)}
+  .secondary{background:transparent;color:var(--fg-1);border:1px solid var(--border-2)}
+  .secondary:hover{background:rgba(255,255,255,.06);border-color:var(--border-strong)}
+  .ghost{background:transparent;color:var(--fg-2)}
+  .ghost:hover{background:rgba(255,255,255,.06);color:var(--fg-1)}
+  .danger{background:transparent;color:var(--danger);border:1px solid rgba(255,84,114,.4)}
+  .danger:hover{background:rgba(255,84,114,.1)}
+  .grad{background:linear-gradient(135deg,#17d4fa,#f22f89);color:#0a1524}
+  .sm{font-size:12px;padding:6px 12px;border-radius:8px}
+  .icon{display:inline-flex;align-items:center;gap:6px}
+  .tag{font-family:var(--font-mono);font-size:10px;color:var(--fg-muted);text-transform:uppercase;letter-spacing:.1em}
+</style></head><body>
+<div class="tag">Primary · Secondary · Ghost · Danger</div>
+<div class="row">
+  <button class="primary">Install plugin</button>
+  <button class="secondary">View docs</button>
+  <button class="ghost">Cancel</button>
+  <button class="danger">Delete workspace</button>
+</div>
+<div class="tag">Gradient · Icon · Small</div>
+<div class="row">
+  <button class="grad">Start building →</button>
+  <button class="primary icon">⎔ Open in Claude Code</button>
+  <button class="sm secondary">Copy</button>
+  <button class="sm ghost">See all</button>
+</div>
+</body></html>

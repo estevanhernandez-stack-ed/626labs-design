@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css"><style>
+  html,body{margin:0;height:100%;background:var(--bg-1);overflow:hidden}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px;height:100%;box-sizing:border-box}
+  .sw{border-radius:var(--r-md);padding:14px;display:flex;flex-direction:column;justify-content:space-between;min-height:0;position:relative;overflow:hidden;box-shadow:var(--inner-stroke)}
+  .sw .name{font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:-.01em}
+  .sw .hex{font-family:var(--font-mono);font-size:11px;opacity:.75;margin-top:2px}
+  .sw .big{font-family:var(--font-display);font-weight:700;font-size:36px;line-height:1;letter-spacing:-.03em}
+</style></head><body>
+<div class="grid">
+  <div class="sw" style="background:#192e44;color:#fff"><div><div class="name">brand-navy</div><div class="hex">#192E44</div></div><div class="big">Aa</div></div>
+  <div class="sw" style="background:#0f1f31;color:#fff"><div><div class="name">navy-deep</div><div class="hex">#0F1F31</div></div><div class="big">Aa</div></div>
+  <div class="sw" style="background:#17d4fa;color:#0a1524"><div><div class="name">brand-cyan</div><div class="hex">#17D4FA</div></div><div class="big">Aa</div></div>
+  <div class="sw" style="background:#f22f89;color:#0a1524"><div><div class="name">brand-magenta</div><div class="hex">#F22F89</div></div><div class="big">Aa</div></div>
+  <div class="sw" style="background:#223a54;color:#fff"><div><div class="name">navy-soft</div><div class="hex">#223A54</div></div><div class="big">Aa</div></div>
+  <div class="sw" style="background:#5ce6ff;color:#0a1524"><div><div class="name">cyan-bright</div><div class="hex">#5CE6FF</div></div><div class="big">Aa</div></div>
+  <div class="sw" style="background:#ff5aa3;color:#0a1524"><div><div class="name">magenta-bright</div><div class="hex">#FF5AA3</div></div><div class="big">Aa</div></div>
+  <div class="sw" style="background:linear-gradient(135deg,#17d4fa,#f22f89);color:#0a1524"><div><div class="name">gradient</div><div class="hex">cyan → magenta</div></div><div class="big">Aa</div></div>
+</div>
+</body></html>

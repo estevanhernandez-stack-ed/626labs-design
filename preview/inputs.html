@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css"><style>
+  html,body{margin:0;height:100%;background:var(--bg-1);overflow:hidden;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px;justify-content:center}
+  label{font-family:var(--font-mono);font-size:10px;color:var(--fg-3);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:6px}
+  input,textarea,select{width:100%;font-family:var(--font-body);font-size:14px;background:var(--bg-0);color:var(--fg-1);border:1px solid var(--border-2);border-radius:10px;padding:10px 12px;box-sizing:border-box;transition:all .15s ease-out;outline:none}
+  input:focus,textarea:focus,select:focus{border-color:var(--brand-cyan);box-shadow:0 0 0 3px rgba(23,212,250,.15)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field{position:relative}
+  .hint{font-size:11px;color:var(--fg-muted);margin-top:4px;font-family:var(--font-body)}
+  .chk{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--fg-2)}
+  .chk input{width:16px;height:16px;accent-color:var(--brand-cyan)}
+</style></head><body>
+<div class="row">
+  <div class="field"><label>Workspace name</label><input value="ado-enterprise" /></div>
+  <div class="field"><label>Region</label><select><option>us-west-2</option><option>eu-central-1</option></select></div>
+</div>
+<div class="field"><label>API token</label><input type="password" value="••••••••••••••" />
+<div class="hint">Rotated every 90 days. Stored encrypted.</div></div>
+<div style="display:flex;gap:18px;margin-top:4px">
+<label class="chk"><input type="checkbox" checked> Enable test generation</label>
+<label class="chk"><input type="checkbox"> Auto-commit docs</label>
+</div>
+</body></html>

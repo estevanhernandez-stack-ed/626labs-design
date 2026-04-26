@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css"><style>
+  html,body{margin:0;height:100%;background:var(--bg-0);overflow:hidden;padding:18px;box-sizing:border-box;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .tile{border-radius:12px;border:1px solid var(--border-1);padding:14px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;min-height:0}
+  .tile .lbl{font-family:var(--font-mono);font-size:10px;color:var(--fg-2);letter-spacing:.08em;text-transform:uppercase;position:relative;z-index:2}
+  .hex{
+    background:
+      linear-gradient(var(--bg-1),var(--bg-1)) padding-box,
+      conic-gradient(from 0deg,#17d4fa,#f22f89,#17d4fa) border-box;
+    border:1px solid transparent}
+  .circuit{background:
+    linear-gradient(var(--bg-1),var(--bg-1)),
+    repeating-linear-gradient(90deg,transparent 0 14px, rgba(23,212,250,.18) 14px 15px),
+    repeating-linear-gradient(0deg,transparent 0 14px, rgba(242,47,137,.12) 14px 15px);
+    background-blend-mode:normal,screen,screen}
+  .circuit::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 14px,rgba(23,212,250,.15) 14px 15px),repeating-linear-gradient(0deg,transparent 0 14px,rgba(242,47,137,.1) 14px 15px);pointer-events:none}
+  .glow{background:radial-gradient(60% 80% at 30% 30%,rgba(23,212,250,.35) 0%,transparent 60%),radial-gradient(60% 80% at 70% 70%,rgba(242,47,137,.3) 0%,transparent 60%),var(--bg-1)}
+  .swoosh{background:var(--bg-1);position:relative}
+  .swoosh::before{content:'';position:absolute;inset:-20% -10%;background:conic-gradient(from 140deg at 50% 50%,transparent 0deg,#17d4fa 60deg,#f22f89 140deg,transparent 220deg);filter:blur(30px);opacity:.55}
+  .hair{background:var(--bg-1);display:flex;align-items:center;justify-content:center}
+  .hair .line{width:80%;height:1px;background:linear-gradient(90deg,transparent,#17d4fa,#f22f89,transparent)}
+</style></head><body>
+<div class="tile hex"><div class="lbl">hex border</div></div>
+<div class="tile circuit"><div class="lbl">circuit trace</div></div>
+<div class="tile glow"><div class="lbl">duo glow</div></div>
+<div class="tile swoosh"><div class="lbl">swoosh</div></div>
+<div class="tile hair"><div class="line"></div></div>
+<div class="tile" style="background:var(--bg-1)"><div class="lbl" style="color:var(--brand-cyan);text-shadow:0 0 12px rgba(23,212,250,.6)">neon text</div></div>
+</body></html>

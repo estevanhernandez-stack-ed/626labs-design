@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css"><style>
+  html,body{margin:0;height:100%;background:var(--bg-1);overflow:hidden;padding:22px;box-sizing:border-box;display:flex;flex-direction:column;gap:14px;justify-content:center}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12px;font-family:var(--font-body);font-weight:500;font-family:var(--font-mono);font-size:11px;letter-spacing:.02em}
+  .dot{width:6px;height:6px;border-radius:999px}
+  .b-success{background:rgba(43,217,154,.12);color:#2bd99a;border:1px solid rgba(43,217,154,.25)}
+  .b-warn{background:rgba(255,180,84,.12);color:#ffb454;border:1px solid rgba(255,180,84,.25)}
+  .b-danger{background:rgba(255,84,114,.12);color:#ff5472;border:1px solid rgba(255,84,114,.25)}
+  .b-info{background:rgba(23,212,250,.12);color:#17d4fa;border:1px solid rgba(23,212,250,.25)}
+  .b-mag{background:rgba(242,47,137,.12);color:#f22f89;border:1px solid rgba(242,47,137,.25)}
+  .b-neutral{background:rgba(255,255,255,.06);color:var(--fg-2);border:1px solid var(--border-1)}
+  .tag{font-family:var(--font-mono);font-size:10px;color:var(--fg-muted);text-transform:uppercase;letter-spacing:.1em}
+</style></head><body>
+<div class="tag">Status</div>
+<div class="row">
+  <span class="badge b-success"><span class="dot" style="background:#2bd99a;box-shadow:0 0 6px #2bd99a"></span>Deployed</span>
+  <span class="badge b-info"><span class="dot" style="background:#17d4fa;box-shadow:0 0 6px #17d4fa"></span>Running</span>
+  <span class="badge b-warn"><span class="dot" style="background:#ffb454"></span>Review needed</span>
+  <span class="badge b-danger"><span class="dot" style="background:#ff5472"></span>Failed</span>
+</div>
+<div class="tag">Labels</div>
+<div class="row">
+  <span class="badge b-mag">PLUGIN</span>
+  <span class="badge b-info">ADO</span>
+  <span class="badge b-neutral">v1.4.0</span>
+  <span class="badge b-neutral">claude-code</span>
+  <span class="badge b-mag">NEW</span>
+</div>
+</body></html>

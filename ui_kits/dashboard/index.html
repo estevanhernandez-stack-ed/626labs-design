@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>The Lab Dashboard · 626Labs</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="stylesheet" href="../../colors_and_type.css"/>
+<link rel="stylesheet" href="dashboard.css"/>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="components.jsx"></script>
+<script type="text/babel">
+const { useState } = React;
+const { Sidebar, TopBar, Stat, Ring, AutoRow, ProjectCard, I } = window.Dashboard;
+
+function App() {
+  const [active, setActive] = useState('projects');
+
+  const projects = [
+    { icon:'🚀', title:'Vibe Launch', accent:false,
+      tags:[['plugin','cyan'],['claude-code','magenta'],['vibe-plugins','n'],['+4','n']],
+      desc:'Claude Code plugin that takes a solo builder from "I have a repo with a shipped product" to "I have a branded…',
+      progress:100, updated:'1 day ago' },
+    { icon:'🌐', title:'626 Labs — Portfolio Hub', accent:false,
+      tags:[['portfolio','cyan'],['hub','magenta'],['landing-page','n'],['+3','n']],
+      desc:'Static landing page at 626labs.dev indexing 626 Labs products: Sanduhr für Claude (flagship native app), Vibe…',
+      progress:100, updated:'1 day ago' },
+    { icon:'📖', title:'Vibe Cartographer', accent:false,
+      tags:[['vibe-cartographer','cyan'],['spec-driven-development','magenta'],['claude-code-plugin','n'],['+2','n']],
+      desc:'Plot your course from Idea to shipped app. Spec-driven development workflow delivered as a Claude Code plugin.',
+      progress:100, updated:'1 day ago' },
+    { icon:'📘', title:'Vibe Doc', accent:false,
+      tags:[['vibe-doc','cyan'],['documentation','magenta'],['doc-generator','n'],['+3','n']],
+      desc:'AI-powered documentation gap analyzer for modern codebases. Scans your project, classifies what you\'ve…',
+      progress:100, updated:'2 days ago' },
+    { icon:'🟣', title:'626Labs Dashboard — Agent OS', accent:true,
+      tags:[['PRIMARY','primary'],['▽ 3 Children','n'],['626labs','magenta'],['agent-os','magenta'],['ai','n'],['+3','n']],
+      desc:'The primary 626Labs AI-native project management platform (v2.0.0). Built with React 19, TypeScript, Vite,…',
+      progress:100, updated:'3 days ago',
+      techLabel:'TECH STACK',
+      techTags:['React 19','TypeScript','Vite','TailwindCSS'] },
+    { icon:'⧖', title:'Sanduhr für Claude', accent:false,
+      tags:[['macOS','cyan'],['native','magenta'],['widget','n'],['+5','n']],
+      desc:'Native macOS (SwiftUI) port of the Python/tkinter "Sanduhr für Claude" usage widget. Floating always-on-…',
+      progress:0, updated:'3 days ago' },
+  ];
+
+  return (
+    <div className="dash-app">
+      <Sidebar active={active} onSelect={setActive} />
+      <div className="dash-main">
+        <TopBar/>
+        <div className="dash-content">
+          <div className="dash-recent">
+            <div className="dash-recent-title">{I.Decisions}Recent Decisions <span className="dash-recent-badge">5</span></div>
+            <div className="dash-recent-link">View All →</div>
+          </div>
+
+          <div className="dash-stats">
+            <Stat eyebrow="Global Progress" icon={I.Chart} value="68" unit="%" sub="227 / 332 Tasks Completed">
+              <Ring pct={68}/>
+            </Stat>
+            <Stat eyebrow="Active Focus" icon={I.Target} value="10" sub="Random Focus" />
+            <Stat eyebrow="Architect Health" icon={I.Architect} value="0.0" unit="%" sub="System integrity optimized"/>
+            <Stat eyebrow="Usage & Cost" icon={I.Zap} value="$0.00" sub="0 tokens/min velocity">
+              <div className="dash-stat-chip"><span className="dash-dot-ok"/>STABLE OPS</div>
+            </Stat>
+          </div>
+
+          <div className="dash-autopilot">
+            <div className="dash-auto-head">
+              <h4>{I.Sparkle}Autopilot Health</h4>
+              <div className="dash-auto-head-right">4 jobs tracked</div>
+            </div>
+            <AutoRow name="Stale Task Sweep" ago="1m ago" ms="752ms" />
+            <AutoRow name="Architect Wake-Up" ago="1h ago" ms="629ms" />
+            <AutoRow name="Daily Briefing" ago="4h ago" ms="4.5s" />
+            <AutoRow name="Weekly Rollup" ago="1d ago" ms="456ms" />
+          </div>
+
+          <div className="dash-section">
+            <div className="dash-section-title">{I.Zap}The Wire <span className="dash-section-count">9 new</span></div>
+            <div>{I.Chevron}</div>
+          </div>
+          <div className="dash-section">
+            <div className="dash-section-title">{I.Project}Portfolio <span className="dash-section-count">22 projects</span></div>
+            <div>{I.Chevron}</div>
+          </div>
+
+          <div className="dash-search-row">
+            <div className="dash-search">{I.Search}<input placeholder="Search projects by name, brief, category, type, c…"/></div>
+            <button className="dash-outline-btn">{I.Project}All Projects</button>
+            <button className="dash-outline-btn">{I.Export}Export</button>
+          </div>
+
+          <div className="dash-outline-btn" style={{alignSelf:'flex-start'}}>{I.Filter}Filter Projects {I.Chevron}</div>
+
+          <div className="dash-projects">
+            {projects.map((p,i)=><ProjectCard key={i} {...p}/>)}
+          </div>
+        </div>
+        <button className="dash-logout">Log Out</button>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

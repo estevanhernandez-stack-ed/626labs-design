@@ -1,0 +1,30 @@
+{
+  "name": "626labs-design",
+  "version": "0.1.0",
+  "description": "626 Labs design system — colors, type, brand assets, UI kit. Source of truth for ThesisStudio, BlogStudio, and other 626 Labs surfaces.",
+  "private": true,
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/estevanhernandez-stack-ed/626labs-design",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/estevanhernandez-stack-ed/626labs-design.git"
+  },
+  "files": [
+    "colors_and_type.css",
+    "assets/",
+    "preview/",
+    "ui_kits/",
+    "uploads/",
+    "README.md",
+    "SKILL.md"
+  ],
+  "exports": {
+    ".": "./colors_and_type.css",
+    "./tokens.css": "./colors_and_type.css",
+    "./README.md": "./README.md",
+    "./SKILL.md": "./SKILL.md",
+    "./assets/*": "./assets/*",
+    "./preview/*": "./preview/*",
+    "./ui_kits/*": "./ui_kits/*"
+  }
+}

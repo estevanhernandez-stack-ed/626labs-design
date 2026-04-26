@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css"><style>
+  html,body{margin:0;height:100%;background:var(--bg-1);overflow:hidden;padding:20px;box-sizing:border-box}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;height:100%}
+  .card{border-radius:var(--r-md);padding:14px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--border-1)}
+  .label{font-family:var(--font-mono);font-size:11px;color:var(--fg-3);text-transform:uppercase;letter-spacing:.08em}
+  .swatch{width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.12)}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12px;font-family:var(--font-body);font-weight:500}
+  .dot{width:6px;height:6px;border-radius:999px}
+</style></head><body>
+<div class="grid">
+  <div class="card"><div class="label">success</div><div style="display:flex;gap:10px;align-items:center"><div class="swatch" style="background:#2bd99a"></div><div class="chip" style="background:rgba(43,217,154,.12);color:#2bd99a"><span class="dot" style="background:#2bd99a"></span>Deployed</div></div></div>
+  <div class="card"><div class="label">warning</div><div style="display:flex;gap:10px;align-items:center"><div class="swatch" style="background:#ffb454"></div><div class="chip" style="background:rgba(255,180,84,.12);color:#ffb454"><span class="dot" style="background:#ffb454"></span>Review</div></div></div>
+  <div class="card"><div class="label">danger</div><div style="display:flex;gap:10px;align-items:center"><div class="swatch" style="background:#ff5472"></div><div class="chip" style="background:rgba(255,84,114,.12);color:#ff5472"><span class="dot" style="background:#ff5472"></span>Failed</div></div></div>
+  <div class="card"><div class="label">info / cyan</div><div style="display:flex;gap:10px;align-items:center"><div class="swatch" style="background:#17d4fa"></div><div class="chip" style="background:rgba(23,212,250,.12);color:#17d4fa"><span class="dot" style="background:#17d4fa"></span>Running</div></div></div>
+</div>
+</body></html>

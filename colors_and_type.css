@@ -32,8 +32,8 @@
   --ink-50:  #f5f7fb;
   --ink-100: #e6ebf3;
   --ink-200: #c4cdda;
-  --ink-300: #8e9bad;
-  --ink-400: #5e6b7f;
+  --ink-300: #a4aebd;  /* lifted off the even ramp to clear WCAG AA as caption text on the navy field (was #8e9bad) */
+  --ink-400: #99a4b4;  /* AA-passing muted/hint text on navy, incl. the lighter card surfaces (was #5e6b7f) */
   --ink-500: #3d4a5e;
   --ink-600: #2a3649;
   --ink-700: #1e2a3d;

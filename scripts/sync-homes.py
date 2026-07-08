@@ -78,6 +78,13 @@ def dirty(repo) -> str:
     return git(repo, "status", "--porcelain").stdout.strip()
 
 
+def dirty_tracked(repo) -> str:
+    """Modifications to tracked files only — untracked strays can't poison a
+    sync from canonical, so they warn rather than abort."""
+    lines = git(repo, "status", "--porcelain").stdout.splitlines()
+    return "\n".join(l for l in lines if l.strip() and not l.startswith("??"))
+
+
 def sha(repo, ref="HEAD") -> str:
     return git(repo, "rev-parse", ref).stdout.strip()
 
@@ -96,9 +103,9 @@ def css_tokens(text: str) -> dict:
 
 
 def check_canonical():
-    d = dirty(CANONICAL)
+    d = dirty_tracked(CANONICAL)
     if d:
-        note("canonical", f"working tree dirty:\n{d}")
+        note("canonical", f"tracked files modified (uncommitted):\n{d}")
     git(CANONICAL, "fetch", "origin", "--quiet")
     behind, ahead = git(CANONICAL, "rev-list", "--left-right", "--count",
                         "origin/main...main").stdout.split()
@@ -162,8 +169,8 @@ def check_hub():
 
 def apply_all(push: bool):
     # 1. canonical: push if ahead
-    if dirty(CANONICAL):
-        sys.exit("ABORT: canonical working tree dirty — commit or stash first.")
+    if dirty_tracked(CANONICAL):
+        sys.exit("ABORT: canonical has uncommitted changes to tracked files — commit or stash first.")
     git(CANONICAL, "fetch", "origin", "--quiet")
     behind, ahead = git(CANONICAL, "rev-list", "--left-right", "--count",
                         "origin/main...main").stdout.split()

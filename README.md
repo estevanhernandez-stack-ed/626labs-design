@@ -273,3 +273,18 @@ Treatments are opt-in visual modes layered over the base tokens — same palette
 - **Terminal chrome:** card titlebars in mono, uppercase, the `626 // session` pattern — see the spec card.
 
 Spec card: `preview/treatment-phosphor-blueprint.html`. Full reference sheet: the exploration's `phosphor-blueprint.html`.
+
+---
+
+## Syncing homes
+
+This repo is canonical, but the skill lives in five homes: this repo, the live skill clone (`~/.claude-personal/skills/626labs-design`), the plugin payload (`626labs-plugin/plugins/626labs/skills/design` — its `SKILL.md` is per-home and never copied), the dotclaude submodule, and the hub's adapted `Design/` copy (deliberate fork: root-absolute fonts import; report-only).
+
+After committing here, run:
+
+```
+python scripts/sync-homes.py --check    # report drift across all homes
+python scripts/sync-homes.py --apply    # push, pull clones, copy plugin payload (+patch bump), bump submodule
+```
+
+The 2026-07-07 WCAG-AA staleness incident is why this exists: the plugin and submodule sat at the initial commit for six weeks because nothing propagated.

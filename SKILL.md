@@ -21,3 +21,6 @@ If the user invokes this skill without any other guidance, ask them what they wa
 - Type: Space Grotesk (display), Inter (UI), JetBrains Mono (code + small meta labels, always uppercase with +0.12em tracking).
 - Voice: builder-to-builder, second person, short sentences, no emoji in UI, no hedging verbs.
 - Tagline: *Imagine Something Else.*
+
+**Treatments (opt-in atmosphere layers):**
+- **Phosphor Blueprint** (adopted 2026-07-07) — `--pb-*` tokens + `.pb-*` recipes in `colors_and_type.css`: absolute-black two-scale drafting grid, CRT scanlines, cyan bloom, terminal chrome, phosphor-persistence hover. For dark hero / launch / terminal surfaces; never on the editorial light layer. Spec card: `preview/treatment-phosphor-blueprint.html`.

@@ -216,3 +216,48 @@ code {
   background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
   border: 0;
 }
+
+/* =========================================================================
+   Treatment: Phosphor Blueprint — adopted 2026-07-07
+   Winner of the treatment exploration (626labs-hub,
+   Design/explorations/2026-07-07-treatments/): Phosphor Terminal's CRT kit
+   over Blueprint's drafting grid, field dropped to absolute black.
+   Dark surfaces only — never on the editorial (light) layer.
+   ========================================================================= */
+:root {
+  --pb-field: rgb(0,0,0);                  /* absolute-black drafting field */
+  --pb-grid-fine: rgba(23,212,250,.05);    /* minor gridline */
+  --pb-grid-coarse: rgba(23,212,250,.11);  /* major gridline */
+  --pb-grid-size-fine: 24px;
+  --pb-grid-size-coarse: 120px;
+  --pb-scanline: rgba(0,0,0,.42);          /* CRT scanline stripe */
+  --pb-panel: rgba(0,0,0,.72);             /* near-black glass — grid ghosts through */
+  --pb-panel-border: rgba(23,212,250,.25);
+  --pb-bloom-cyan: 0 0 14px rgba(23,212,250,.5);   /* display type + stat values */
+  --pb-bloom-magenta: 0 0 8px rgba(242,47,137,.6); /* cursor / accent blips */
+  --pb-trail: 0 0 6px rgba(23,212,250,.9), 0 0 28px rgba(23,212,250,.5), 12px 0 24px rgba(23,212,250,.25); /* phosphor-persistence hover */
+}
+
+/* The drafting field — body or a full-bleed section */
+.pb-field {
+  background:
+    linear-gradient(90deg, var(--pb-grid-fine) 1px, transparent 1px),
+    linear-gradient(0deg,  var(--pb-grid-fine) 1px, transparent 1px),
+    linear-gradient(90deg, var(--pb-grid-coarse) 1px, transparent 1px),
+    linear-gradient(0deg,  var(--pb-grid-coarse) 1px, transparent 1px),
+    var(--pb-field);
+  background-size:
+    var(--pb-grid-size-fine) var(--pb-grid-size-fine),
+    var(--pb-grid-size-fine) var(--pb-grid-size-fine),
+    var(--pb-grid-size-coarse) var(--pb-grid-size-coarse),
+    var(--pb-grid-size-coarse) var(--pb-grid-size-coarse);
+}
+
+/* Scanlines — an empty fixed element so the stripes persist through scroll */
+.pb-scanlines {
+  position: fixed; inset: 0; pointer-events: none; z-index: 9;
+  background: repeating-linear-gradient(0deg, var(--pb-scanline) 0 1px, transparent 1px 3px);
+}
+
+.pb-panel { background: var(--pb-panel); border: 1px solid var(--pb-panel-border); }
+.pb-bloom { text-shadow: var(--pb-bloom-cyan); }

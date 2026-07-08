@@ -249,3 +249,27 @@ The provided brand materials did not include font files. We've chosen Google Fon
 - Colors are **sampled from the logo**, not a provided palette. The cyan and magenta hues are close to the PNG; official hex values may differ slightly — confirm.
 - **No codebase, no Figma, no existing UI screenshots** were shared. The UI kits demonstrate how the brand *could* render in product, not how it currently does.
 - **Tone guidance is inferred** from the tagline and product positioning. Happy to tune once we see actual marketing copy, in-product strings, or email templates.
+
+---
+
+## Treatments
+
+Treatments are opt-in visual modes layered over the base tokens — same palette, same type, different atmosphere. Adopted treatments carry their own token group in `colors_and_type.css` and a spec card in `preview/`.
+
+### Phosphor Blueprint (adopted 2026-07-07)
+
+*The drawing is the monitor.* Phosphor Terminal's CRT kit over Blueprint's two-scale drafting grid, field dropped to absolute black. Winner of the 2026-07-07 treatment exploration — six directions plus one remix, judged on identical specimen sheets in `626labs-hub/Design/explorations/2026-07-07-treatments/`.
+
+**Use for:** dark hero surfaces, launch and announcement pages, terminal-flavored product UI — moments that want the late-night-monitor mood at full strength.
+**Never on:** the editorial (light-paper) layer, or surfaces where the base navy system is already doing quiet work. This treatment is loud by design.
+
+**The kit** (tokens prefixed `--pb-`, recipes prefixed `.pb-`):
+
+- **Field:** `.pb-field` — absolute black + 24px/120px cyan drafting grid.
+- **Scanlines:** `.pb-scanlines` on an empty fixed element — CRT stripes that persist through scroll.
+- **Panels:** `.pb-panel` — near-black glass (`--pb-panel`) with a cyan hairline; the grid ghosts through at the edges.
+- **Bloom:** `.pb-bloom` / `--pb-bloom-cyan` on display type and stat values; `--pb-bloom-magenta` for cursor and accent blips.
+- **Persistence:** `--pb-trail` as the primary-CTA hover shadow — the phosphor afterglow, always trailing rightward.
+- **Terminal chrome:** card titlebars in mono, uppercase, the `626 // session` pattern — see the spec card.
+
+Spec card: `preview/treatment-phosphor-blueprint.html`. Full reference sheet: the exploration's `phosphor-blueprint.html`.

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css"><style>
+  html,body{margin:0;height:100%;box-sizing:border-box;overflow:hidden}
+  body{padding:22px;display:flex;flex-direction:column;gap:14px;justify-content:center}
+  .tag{font-family:var(--font-mono);font-size:10px;color:var(--fg-muted);text-transform:uppercase;letter-spacing:.1em}
+  .bloom-title{font-family:var(--font-display);font-size:28px;font-weight:700;letter-spacing:-.02em;color:var(--fg-1);text-shadow:var(--pb-bloom-cyan)}
+  .panel{border-radius:10px;padding:40px 16px 16px;position:relative;overflow:hidden;max-width:340px}
+  .panel::before{content:"626 // session";position:absolute;top:0;left:0;right:0;height:26px;font:500 10px/26px var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--brand-cyan-dim);padding-left:14px;border-bottom:1px solid var(--pb-panel-border);background:rgba(23,212,250,.05)}
+  .panel p{margin:0;font-family:var(--font-body);font-size:13px;color:var(--fg-2)}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .btn{font:600 13px/1 var(--font-body);padding:10px 16px;border-radius:10px;color:var(--fg-on-brand);background:var(--brand-cyan);text-decoration:none;display:inline-block}
+  .btn.hover{filter:brightness(1.1);box-shadow:var(--pb-trail)}
+</style></head><body class="pb-field">
+<div class="pb-scanlines"></div>
+<div class="tag">Treatment · Phosphor Blueprint</div>
+<div class="bloom-title">The drawing is the monitor.</div>
+<div class="panel pb-panel"><p>Near-black glass over the drafting grid. Terminal chrome, cyan bloom, phosphor persistence.</p></div>
+<div class="row"><a class="btn" href="#">Primary</a><a class="btn hover" href="#">Primary &middot; hover</a><span class="tag">--pb-* tokens &middot; colors_and_type.css</span></div>
+</body></html>

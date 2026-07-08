@@ -85,6 +85,16 @@ def dirty_tracked(repo) -> str:
     return "\n".join(l for l in lines if l.strip() and not l.startswith("??"))
 
 
+def dirty_payload(repo) -> str:
+    """Only modifications that would actually propagate stale: payload files
+    or SKILL.md. Uncommitted edits to .gitignore/package.json/scripts sync
+    nowhere and merely warn."""
+    ship = set(payload_files()) | {"SKILL.md"}
+    lines = git(repo, "status", "--porcelain").stdout.splitlines()
+    return "\n".join(l for l in lines
+                     if l.strip() and not l.startswith("??") and l[3:].strip() in ship)
+
+
 def sha(repo, ref="HEAD") -> str:
     return git(repo, "rev-parse", ref).stdout.strip()
 
@@ -103,9 +113,12 @@ def css_tokens(text: str) -> dict:
 
 
 def check_canonical():
-    d = dirty_tracked(CANONICAL)
+    d = dirty_payload(CANONICAL)
     if d:
-        note("canonical", f"tracked files modified (uncommitted):\n{d}")
+        note("canonical", f"payload files modified (uncommitted):\n{d}")
+    other = dirty_tracked(CANONICAL)
+    if other and not d:
+        print(f"  warn  [canonical] non-payload tracked modifications (won't block --apply):\n        {other}")
     git(CANONICAL, "fetch", "origin", "--quiet")
     behind, ahead = git(CANONICAL, "rev-list", "--left-right", "--count",
                         "origin/main...main").stdout.split()
@@ -169,8 +182,8 @@ def check_hub():
 
 def apply_all(push: bool):
     # 1. canonical: push if ahead
-    if dirty_tracked(CANONICAL):
-        sys.exit("ABORT: canonical has uncommitted changes to tracked files — commit or stash first.")
+    if dirty_payload(CANONICAL):
+        sys.exit("ABORT: canonical has uncommitted payload changes — commit or stash first.")
     git(CANONICAL, "fetch", "origin", "--quiet")
     behind, ahead = git(CANONICAL, "rev-list", "--left-right", "--count",
                         "origin/main...main").stdout.split()

@@ -24,7 +24,13 @@ If the user invokes this skill without any other guidance, ask them what they wa
 - Hand: EsteFont Pro (`--font-hand`) for Este's own words only (his quotes, sign-offs). Upright, ~1.2x size, 24px minimum. Not on Google Fonts: load `fonts/fonts.css` or paste `fonts/estefont-pro-inline.css`.
 - Voice: builder-to-builder, second person, short sentences, no emoji in UI, no hedging verbs, em-dashes minimal. Never: empower, leverage, seamlessly, unlock, unleash, best-in-class.
 - Name: "626 Labs" in prose; "626Labs LLC" only for the legal entity.
+- **Audio:** No default system sounds, browser alert chimes, or stock OS dings. If a surface needs audio feedback (notifications, success/error tones, micro-interactions), use **modern crisp tones** — short, intentionally-shaped, brand-coherent. Default to silence over a system beep.
 - Tagline: *Imagine Something Else.*
+
+**Editorial mode (when designing reading surfaces — theses, blog posts, Field Notes, longform articles):**
+- Switch to `editorial.css`. Light paper field (`--ed-paper: #F7F5F0`), navy ink (`--ed-ink`), Source Serif 4 body.
+- Accent use is RESTRAINED. Cyan→magenta gradient appears only as the accent rule and on link hover. Pull-quotes, rules, and dingbats are the visual language — not full-color blocks.
+- The two layers (dark-mode UI vs. light-mode editorial) intentionally don't blend. Pick one per artifact.
 
 **Treatments (opt-in atmosphere layers):**
 - **Phosphor Blueprint** (adopted 2026-07-07) — `--pb-*` tokens + `.pb-*` recipes in `colors_and_type.css`: absolute-black two-scale drafting grid, CRT scanlines, cyan bloom, terminal chrome, phosphor-persistence hover. For dark hero / launch / terminal surfaces; never on the editorial light layer. Spec card: `preview/treatment-phosphor-blueprint.html`.

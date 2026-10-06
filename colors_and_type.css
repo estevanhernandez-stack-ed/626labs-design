@@ -4,7 +4,11 @@
    "Imagine Something Else" — technical, playful, a little cyberpunk.
    ========================================================================= */
 
-/* ---------- Web fonts (Google Fonts fallback — see README for substitution notes) ---------- */
+/* ---------- Web fonts ----------
+   Google Fonts here, so this file works anywhere online. The same faces are
+   self-hosted in fonts/ (link fonts/fonts.css for offline or production use).
+   EsteFont Pro (--font-hand) is NOT on Google Fonts: load fonts/fonts.css, or
+   paste fonts/estefont-pro-inline.css where no sibling file can load. */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
@@ -117,6 +121,9 @@
   --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif; /* headlines, logo lockup */
   --font-body:    'Inter', system-ui, -apple-system, sans-serif;   /* UI + body */
   --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  /* Este's handwriting. Este's own words only: quotes, sign-offs. Upright,
+     never tracked, ~1.2x the surrounding size (0.45em x-height), 24px min. */
+  --font-hand:    'EsteFont Pro', 'Segoe Print', 'Bradley Hand', cursive;
 
   /* ---------- Type scale (1.200 ratio, clamped for responsive) ---------- */
   --t-display: clamp(40px, 6vw, 72px);

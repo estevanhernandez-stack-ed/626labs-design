@@ -1,22 +1,26 @@
 #!/usr/bin/env python3
 """Sync the 626labs-design skill across its homes.
 
-The design system lives in five places (see README "Syncing homes"):
+The design system lives in four places (see README "Syncing homes"):
 
   1. canonical   ~/Projects/626labs-design            <- author + commit HERE
-  2. live skill  ~/.claude-personal/skills/626labs-design   (clone; syncs by pull)
+  2. live skill  ~/.claude-personal/skills/626labs-design
+                 (git submodule of canonical inside the dotclaude-personal seat
+                 repo; syncs by moving the submodule and bumping the seat's
+                 pointer. Since 2026-09-30 this one home replaces both the old
+                 live clone and the ~/Projects/dotclaude mirror, now archived.)
   3. plugin      ~/Projects/626labs-plugin/plugins/626labs/skills/design
                  (payload copy; SKILL.md is PER-HOME and never copied)
-  4. dotclaude   ~/Projects/dotclaude/claude-personal/skills/626labs-design
-                 (git submodule of canonical; syncs by pointer bump)
-  5. hub         ~/Projects/626labs-hub/Design         (deliberate fork: root-
+  4. hub         ~/Projects/626labs-hub/Design         (deliberate fork: root-
                  absolute fonts import; REPORT-ONLY, token-value parity check)
+
+The Claude app copy is uploaded by hand: scripts/package-claude-app.py.
 
 Usage:
   python scripts/sync-homes.py --check    # report drift, exit 1 if any (default)
-  python scripts/sync-homes.py --apply    # push canonical, pull clones, copy
-                                          # plugin payload (+patch bump), bump
-                                          # dotclaude submodule pointer
+  python scripts/sync-homes.py --apply    # push canonical, move the live
+                                          # submodule + bump the seat pointer,
+                                          # copy plugin payload (+patch bump)
   python scripts/sync-homes.py --apply --no-push   # same, but no git push
 
 Safety: --apply refuses to touch any home whose working tree is dirty, and
@@ -31,12 +35,12 @@ from pathlib import Path
 
 HOME = Path.home()
 CANONICAL = HOME / "Projects/626labs-design"
-LIVE = HOME / ".claude-personal/skills/626labs-design"
+SEAT = HOME / ".claude-personal"
+LIVE_REL = "skills/626labs-design"
+LIVE = SEAT / LIVE_REL
 PLUGIN_REPO = HOME / "Projects/626labs-plugin"
 PLUGIN_SKILL = PLUGIN_REPO / "plugins/626labs/skills/design"
 PLUGIN_MANIFEST = PLUGIN_REPO / "plugins/626labs/.claude-plugin/plugin.json"
-DOTCLAUDE = HOME / "Projects/dotclaude"
-SUBMODULE = DOTCLAUDE / "claude-personal/skills/626labs-design"
 HUB_CSS = HOME / "Projects/626labs-hub/Design/colors_and_type.css"
 
 # Never copied into the plugin home: SKILL.md carries per-home frontmatter
@@ -139,6 +143,8 @@ def check_live():
         note("live-skill", f"at {sha(LIVE)[:7]}, canonical at {sha(CANONICAL)[:7]}")
     elif not d:
         ok("live-skill", "matches canonical")
+    if LIVE_REL in dirty(SEAT):
+        note("live-skill", "seat repo has an uncommitted pointer bump")
 
 
 def check_plugin():
@@ -150,18 +156,6 @@ def check_plugin():
     else:
         ok("plugin", "payload matches canonical (SKILL.md per-home, not compared)")
     return stale
-
-
-def check_submodule():
-    d = dirty(SUBMODULE)
-    if d:
-        note("dotclaude", f"submodule working tree dirty:\n{d}")
-    if sha(SUBMODULE) != sha(CANONICAL):
-        note("dotclaude", f"submodule at {sha(SUBMODULE)[:7]}, canonical at {sha(CANONICAL)[:7]}")
-    elif not d:
-        ok("dotclaude", "submodule matches canonical")
-    if "claude-personal/skills/626labs-design" in dirty(DOTCLAUDE):
-        note("dotclaude", "submodule pointer bump uncommitted in super-repo")
 
 
 def check_hub():
@@ -193,13 +187,22 @@ def apply_all(push: bool):
         git(CANONICAL, "push", "origin", "main")
         print("pushed canonical")
 
-    # 2. live skill: ff pull
+    # 2. live skill: move the submodule to canonical, bump the seat pointer
     if dirty(LIVE):
         sys.exit("ABORT: live-skill working tree dirty — resolve by hand (git -C "
                  f"{LIVE} status).")
     git(LIVE, "fetch", "origin", "--quiet")
-    git(LIVE, "merge", "--ff-only", "origin/main")
+    git(LIVE, "checkout", "--quiet", "--detach", sha(CANONICAL))
     print(f"live-skill at {sha(LIVE)[:7]}")
+    if LIVE_REL in dirty(SEAT):
+        git(SEAT, "add", LIVE_REL)
+        git(SEAT, "commit", "-m",
+            f"chore(skills): bump 626labs-design to {sha(LIVE)[:7]}")
+        if push:
+            git(SEAT, "push")
+        print("seat pointer bumped" + ("" if push else " [not pushed]"))
+    else:
+        print("seat pointer already current")
 
     # 3. plugin: copy payload, bump patch on change
     stale = check_plugin()
@@ -225,22 +228,7 @@ def apply_all(push: bool):
     else:
         print("plugin already in sync")
 
-    # 4. dotclaude submodule: ff to canonical, bump pointer
-    if dirty(SUBMODULE):
-        sys.exit(f"ABORT: dotclaude submodule dirty — resolve by hand (git -C {SUBMODULE} status).")
-    git(SUBMODULE, "fetch", "origin", "--quiet")
-    git(SUBMODULE, "merge", "--ff-only", "origin/main")
-    if "claude-personal/skills/626labs-design" in dirty(DOTCLAUDE):
-        git(DOTCLAUDE, "add", "claude-personal/skills/626labs-design")
-        git(DOTCLAUDE, "commit", "-m",
-            f"chore(mirror): bump 626labs-design submodule to {sha(SUBMODULE)[:7]}")
-        if push:
-            git(DOTCLAUDE, "push", "origin", "main")
-        print(f"dotclaude submodule -> {sha(SUBMODULE)[:7]}" + ("" if push else " [not pushed]"))
-    else:
-        print("dotclaude already in sync")
-
-    # 5. hub: report only
+    # 4. hub: report only
     check_hub()
 
 
@@ -252,7 +240,7 @@ def main():
     ap.add_argument("--no-push", action="store_true", help="with --apply: skip all git pushes")
     args = ap.parse_args()
 
-    for p in (CANONICAL, LIVE, PLUGIN_SKILL, SUBMODULE, HUB_CSS):
+    for p in (CANONICAL, LIVE, PLUGIN_SKILL, HUB_CSS):
         if not p.exists():
             sys.exit(f"ABORT: expected home missing: {p}")
 
@@ -265,7 +253,6 @@ def main():
     check_canonical()
     check_live()
     check_plugin()
-    check_submodule()
     check_hub()
     if drift:
         print(f"\n{len(drift)} drift item(s). Run with --apply to propagate.")

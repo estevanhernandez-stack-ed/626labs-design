@@ -1,12 +1,14 @@
 ---
 name: 626labs-design
-description: Use this skill to generate well-branded interfaces and assets for 626Labs, either for production or throwaway prototypes/mocks/etc. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for prototyping.
+description: Use this skill to generate well-branded interfaces and assets for 626 Labs, for production code or throwaway prototypes, mocks, slides, social cards and long-form reading pages. Contains the brand's colors, type, self-hosted fonts (including EsteFont Pro, Este's handwriting), voice rules, assets, spec cards and a UI kit.
 user-invocable: true
 ---
 
 Read the `README.md` file within this skill, and explore the other available files:
 
 - `colors_and_type.css` — foundational tokens (colors, type, spacing, motion, shadows/glows)
+- `editorial.css` — the light reading layer for theses and Field Notes (Source Serif 4)
+- `fonts/` — the brand faces as woff2 with `fonts.css`; `estefont-pro-inline.css` inlines the hand for pages that can't load files
 - `assets/` — logo + reference imagery
 - `preview/` — small spec cards for each token group
 - `ui_kits/dashboard/` — The Lab Dashboard (Agent OS) recreation — React + CSS
@@ -19,7 +21,9 @@ If the user invokes this skill without any other guidance, ask them what they wa
 - Dark-mode first. Deep navy (`#091023`–`#192e44`) base. Neon cyan `#17d4fa` + magenta `#f22f89` signature duo — always pair them.
 - Product-specific teal `#2ee6c9` used in The Lab Dashboard for primary CTAs and active nav.
 - Type: Space Grotesk (display), Inter (UI), JetBrains Mono (code + small meta labels, always uppercase with +0.12em tracking).
-- Voice: builder-to-builder, second person, short sentences, no emoji in UI, no hedging verbs.
+- Hand: EsteFont Pro (`--font-hand`) for Este's own words only (his quotes, sign-offs). Upright, ~1.2x size, 24px minimum. Not on Google Fonts: load `fonts/fonts.css` or paste `fonts/estefont-pro-inline.css`.
+- Voice: builder-to-builder, second person, short sentences, no emoji in UI, no hedging verbs, em-dashes minimal. Never: empower, leverage, seamlessly, unlock, unleash, best-in-class.
+- Name: "626 Labs" in prose; "626Labs LLC" only for the legal entity.
 - Tagline: *Imagine Something Else.*
 
 **Treatments (opt-in atmosphere layers):**

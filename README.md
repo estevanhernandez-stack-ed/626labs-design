@@ -2,7 +2,7 @@
 
 > **Imagine Something Else.**
 
-626 Labs LLC is a small-but-ambitious outfit shipping **vibe-coded SaaS** — production software assembled fast, iterated in the open, and launched at enterprise grade. The flagship effort is an **ADO (Application Development Operations) environment** being rolled out via their day-job employer, reaching for enterprise quality through vibe coding. On the side, they ship **fun apps** and **plugin tools for vibe coders** (think: documentation generators, test scaffolders, and other codebase-rounding utilities — particularly for Claude Code).
+626 Labs is an independent studio in Fort Worth, Texas (the legal entity is **626Labs LLC**). It builds exact-fit software: native Windows and Mac apps, a family of Claude Code plugins for builders who ship for real, a NASA-grade astrology app, and merch designed by its own AI pipeline. The founding line: *"I build tools, because care doesn't always scale."*
 
 The brand's personality is two things at once: **technical and playful**. Neon duotone on deep navy, hexagon + brain + circuit motifs, a swoosh that says "thought becomes code, fast."
 
@@ -12,22 +12,16 @@ The brand's personality is two things at once: **technical and playful**. Neon d
 
 | Product | Surface | Role |
 |---|---|---|
-| **626Labs Dashboard — Agent OS** | SaaS web app (flagship) | Primary 626Labs AI-native project management platform (v2.0.0). Built with React 19, TypeScript, Vite, TailwindCSS. "The Lab Dashboard" — houses Operation Center (Projects, Universe, Decisions, Initiatives, The Architect, Goals & OKRs, Analytics), Build & Ship (Workflows, GitHub, IDE Control), and Agent Ops (Actions, Council Debate). |
-| **626labs.dev** | Marketing / Portfolio Hub | Landing page indexing 626Labs products |
-| **Vibe Launch** | Claude Code plugin | Solo builder from "I have a repo" to "I have a branded product" |
-| **Vibe Cartographer** | Claude Code plugin | Spec-driven development: Idea → shipped app |
-| **Vibe Doc** | Plugin / CLI | AI-powered documentation gap analyzer for modern codebases |
-| **Sanduhr für Claude** | Native macOS widget | SwiftUI port of the Python/tkinter Sanduhr usage widget — floating always-on |
+| **626labs.dev** | Portfolio hub | The public face. Its look rotates monthly (see *The site's monthly themes* below); the brand in this skill is what stays fixed. |
+| **626 Labs Dashboard (Agent OS)** | Private web app | The lab's operating system: projects, decisions, The Architect. The source for `ui_kits/dashboard/`. Private, so show it, don't sell it. |
+| **Vibe plugins** | Claude Code plugins | Cartographer, Iterate, Insights, Keystone, Doc, Test, Sec, Wrap, Walk, Prompt, Lingual, Access, Glow, Runbook, Recall, Taker, Thesis, Thesis Engine |
+| **Native apps** | Windows (Microsoft Store) and Mac | Sanduhr für Claude, RORORO, 626 Mod Launcher, Right Click PNG, RBX15 Shirt and Pants Maker, SnapSnip |
+| **Celestia 3** | Web app | NASA-grade astrology AI |
+| **Conundrum by Este** | Etsy shop | Streetwear from the 626 POD Pipeline |
 
-> Reference: `assets/dashboard-reference.png` — screenshot of the live "The Lab Dashboard" as of April 2026. Used as the primary visual source for the `ui_kits/dashboard/` recreation.
+> Reference: `assets/dashboard-reference.png`, the Lab Dashboard as of April 2026, the visual source for `ui_kits/dashboard/`.
 
-## Sources consumed
-
-- `uploads/626Labs.png` — primary brand logo (provided by user)
-- `626labs.dev` — marketing site, fetched for product positioning copy
-- No Figma, codebase, or additional brand collateral was provided; color values were **sampled directly from the logo PNG** and brand language was **distilled from the site's tagline and product descriptions**
-
-> ⚠️ **No codebase or Figma access.** UI kits in this system are good-faith recreations rooted in the brand's visual DNA (logo, tagline, dark-neon aesthetic), not pixel matches of existing screens. Ship us screenshots, a repo, or Figma access and we'll tighten the fit.
+The palette and type here are the ones 626labs.dev and the apps actually ship. The colors began as samples from the logo and have been the production values since.
 
 ---
 
@@ -37,9 +31,12 @@ The brand's personality is two things at once: **technical and playful**. Neon d
 ├── README.md                  ← you are here
 ├── SKILL.md                   ← Agent Skill entrypoint (Claude Code compatible)
 ├── colors_and_type.css        ← foundational CSS variables (colors, type, spacing, motion)
+├── editorial.css              ← the light reading layer (theses, Field Notes): Source Serif 4
+├── fonts/                     ← the brand faces as woff2, plus fonts.css (relative paths)
+│   └── estefont-pro-inline.css  ← the hand as data URIs, for pages that can't load files
 ├── assets/
 │   ├── 626Labs-logo.png       ← primary logo lockup
-│   └── logo-mark.svg          ← hexagon + brain mark (extracted)
+│   └── dashboard-reference.png
 ├── preview/                   ← Design System tab cards (one concept per card)
 │   ├── logo.html
 │   ├── colors-brand.html
@@ -48,6 +45,7 @@ The brand's personality is two things at once: **technical and playful**. Neon d
 │   ├── type-display.html
 │   ├── type-body.html
 │   ├── type-mono.html
+│   ├── type-hand.html
 │   ├── spacing.html
 │   ├── radii.html
 │   ├── shadows.html
@@ -56,10 +54,8 @@ The brand's personality is two things at once: **technical and playful**. Neon d
 │   ├── cards.html
 │   ├── badges.html
 │   └── motifs.html
-├── ui_kits/
-│   ├── website/               ← marketing site (626labs.dev style)
-│   └── ado/                   ← ADO environment SaaS app
-└── fonts/                     ← (Google Fonts loaded via @import; no local TTFs — see notes)
+└── ui_kits/
+    └── dashboard/             ← the Lab Dashboard (Agent OS), React + CSS
 ```
 
 ---
@@ -81,7 +77,7 @@ The voice of 626 Labs is **builder-to-builder** — it assumes the reader ships 
 - **Titles and H1s**: Sentence case. *"Vibe coding, shipped."* Not "Vibe Coding, Shipped."
 - **Buttons**: Sentence case, verb-first. *"Install plugin", "Start building", "Open workspace"*.
 - **UI labels / eyebrows**: UPPERCASE with +0.1em tracking, sparingly — used as a "circuit-trace" accent (see Visual Foundations).
-- **Product names**: Preserve the casing `626Labs` uses internally — the wordmark is `626Labs LLC` with a lowercase `labs`. When written inline, prefer `626 Labs`.
+- **The name**: `626 Labs` (with the space) in prose and UI. `626Labs LLC` (no space) only where the legal entity is meant: copyright lines, legal pages, store publisher fields.
 
 ### Pronouns
 
@@ -92,7 +88,7 @@ The voice of 626 Labs is **builder-to-builder** — it assumes the reader ships 
 ### Emoji & punctuation
 
 - **No emoji in product UI or marketing copy.** The brand's visual character comes from the logo's glyph energy (hex, brain, swoosh, circuit lines) — emoji would dilute it.
-- **An em-dash is a welcome rhetorical move.** *"Enterprise grade — reached for via vibe coding."*
+- **Em-dashes minimal.** Commas, periods and colons by default; reach for an em-dash only when nothing else does the job. *"Enterprise grade, reached for through vibe coding."*
 - **Ellipses for loading states only**, never for dramatic pause in copy.
 - **Period-terminated sentences even in microcopy.** *"Tests generated. Opened in editor."*
 
@@ -100,8 +96,12 @@ The voice of 626 Labs is **builder-to-builder** — it assumes the reader ships 
 
 - **Tagline**: *Imagine Something Else.*
 - **Site subhead**: *Native apps & Claude Code plugins.*
-- **ADO positioning**: *Enterprise grade, reached for via vibe coding.*
+- **Founding line**: *I build tools, because care doesn't always scale.*
 - **Plugin positioning**: *Round out your codebase with documentation and tests — written by an agent who read it first.*
+
+### Never use
+
+empower, leverage, seamlessly, unlock, unleash, best-in-class, robust solution, delightful experience, "I'd be happy to", "Let me know if there's anything else". No hedging verbs ("help you to", "enables"). On the 626labs.dev repo the canonical list is `626labs-marketing/docs/banned.md`; this is its working subset.
 
 ### Don't
 
@@ -135,6 +135,8 @@ The voice of 626 Labs is **builder-to-builder** — it assumes the reader ships 
 - **Display / headlines**: **Space Grotesk** — geometric, slightly quirky, feels "engineered but human." `-0.02em` to `-0.03em` tracking on big sizes.
 - **Body / UI**: **Inter**. Workhorse, high legibility at small sizes.
 - **Mono**: **JetBrains Mono** — 626 Labs ships developer tools; code fragments are first-class citizens in the UI.
+- **Serif (reading layer only)**: **Source Serif 4**, via `editorial.css`, for long-form theses and Field Notes.
+- **Hand**: **EsteFont Pro** (`--font-hand`), Este's own handwriting, Regular and Bold. One rule: **Este's own words, in his hand.** Founding and pull quotes in his voice, sign-offs ("— Este"), a personal note on a product page. Never body copy, UI labels, buttons, or anyone else's words; never italic or letter-spaced (the slant and spacing are drawn in). The hand's x-height is 0.45em, so set it about 1.2x the size the surrounding type would use, and never below 24px. Bold at display size; Regular for quotes. Spec card: `preview/type-hand.html`.
 - **Scale**: 1.200 ratio, clamped for responsive (`clamp(32px, 4.2vw, 48px)` for h1).
 
 ### Backgrounds
@@ -230,31 +232,34 @@ The voice of 626 Labs is **builder-to-builder** — it assumes the reader ships 
 
 ---
 
-## Font substitution note
+## Fonts
 
-The provided brand materials did not include font files. We've chosen Google Fonts substitutes that match the brand's engineered-but-friendly character:
-
-| Role | Used | Reasoning / alternative |
+| Role | Face | Where it comes from |
 |---|---|---|
-| Display | **Space Grotesk** | Geometric, slight humanist quirk, pairs with technical brands |
-| Body / UI | **Inter** | High legibility at UI sizes — consider swapping for **Söhne** or **Geist** if you have a license |
-| Mono | **JetBrains Mono** | Built for code; ligature-friendly — **Berkeley Mono** or **Commit Mono** are premium alternatives |
+| Display | **Space Grotesk** | Google Fonts, or `fonts/` |
+| Body / UI | **Inter** (+ italic) | Google Fonts, or `fonts/` |
+| Mono | **JetBrains Mono** | Google Fonts, or `fonts/` |
+| Reading serif | **Source Serif 4** (+ italic) | `editorial.css` (Google), or `fonts/` |
+| Hand | **EsteFont Pro** 400 / 700 | `fonts/` only: not on Google Fonts |
 
-**⚠️ Please confirm or provide brand fonts** and we'll swap `@import` for local `@font-face` declarations in `fonts/`.
+These are the production fonts, not substitutes; 626labs.dev self-hosts the same files. `colors_and_type.css` loads the first four from Google Fonts so it works anywhere online. For EsteFont Pro, link `fonts/fonts.css` beside the page, or, where nothing beside the page can load (a claude.ai artifact, a one-file mock), paste `fonts/estefont-pro-inline.css` into a `<style>` block. The four Google faces are SIL OFL 1.1. EsteFont Pro is Este's handwriting, owned by 626Labs LLC: use it for 626 Labs work only.
 
 ---
 
 ## Caveats
 
-- Colors are **sampled from the logo**, not a provided palette. The cyan and magenta hues are close to the PNG; official hex values may differ slightly — confirm.
-- **No codebase, no Figma, no existing UI screenshots** were shared. The UI kits demonstrate how the brand *could* render in product, not how it currently does.
-- **Tone guidance is inferred** from the tagline and product positioning. Happy to tune once we see actual marketing copy, in-product strings, or email templates.
+- **The dashboard kit is a recreation** from the April 2026 reference screenshot, not the live app's code. Treat it as a pattern reference.
+- **Light surfaces belong to the editorial layer** (`editorial.css`). Product UI and marketing stay dark-first.
 
 ---
 
 ## Treatments
 
 Treatments are opt-in visual modes layered over the base tokens — same palette, same type, different atmosphere. Adopted treatments carry their own token group in `colors_and_type.css` and a spec card in `preview/`.
+
+### The site's monthly themes
+
+626labs.dev wears a new theme each month (Phosphor Blueprint in September, The Slate Broadsheet in October, Cyan Fade in November); retired ones freeze at dated URLs. Those themes live in the hub repo and are the site's dress, not the brand. Don't copy a month's look into a product as if it were the system. What carries across every theme: the cyan and magenta pair, the tagline, the voice, and Este's words in his hand.
 
 ### Phosphor Blueprint (adopted 2026-07-07)
 
@@ -278,13 +283,13 @@ Spec card: `preview/treatment-phosphor-blueprint.html`. Full reference sheet: th
 
 ## Syncing homes
 
-This repo is canonical, but the skill lives in five homes: this repo, the live skill clone (`~/.claude-personal/skills/626labs-design`), the plugin payload (`626labs-plugin/plugins/626labs/skills/design` — its `SKILL.md` is per-home and never copied), the dotclaude submodule, and the hub's adapted `Design/` copy (deliberate fork: root-absolute fonts import; report-only).
+This repo is canonical, but the skill lives in four homes: this repo; the live skill (`~/.claude-personal/skills/626labs-design`, a submodule of the `dotclaude-personal` seat repo since 2026-09-30, which retired the separate dotclaude mirror); the plugin payload (`626labs-plugin/plugins/626labs/skills/design`, whose `SKILL.md` is per-home and never copied); and the hub's adapted `Design/` copy (deliberate fork: root-absolute fonts import; report-only). The Claude app copy is a fifth, uploaded by hand: `python scripts/package-claude-app.py` builds the zip.
 
 After committing here, run:
 
 ```
 python scripts/sync-homes.py --check    # report drift across all homes
-python scripts/sync-homes.py --apply    # push, pull clones, copy plugin payload (+patch bump), bump submodule
+python scripts/sync-homes.py --apply    # push, move the live submodule + bump the seat pointer, copy plugin payload (+patch bump)
 ```
 
 The 2026-07-07 WCAG-AA staleness incident is why this exists: the plugin and submodule sat at the initial commit for six weeks because nothing propagated.

@@ -1,0 +1,71 @@
+/* 626 Labs brand fonts, self-hosted. Paths are relative to this file, so
+   link it from wherever the fonts/ folder sits:
+     <link rel="stylesheet" href="fonts/fonts.css">
+   On 626labs.dev the same faces load from /fonts/fonts.css.
+   Space Grotesk, Inter, JetBrains Mono and Source Serif 4 are SIL OFL 1.1
+   (license text travels inside each font). EsteFont Pro is Este's
+   handwriting, 626Labs LLC, for 626 Labs work only. See README > Type. */
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('SpaceGrotesk-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('Inter-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('Inter-Italic-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('JetBrainsMono-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url('SourceSerif4-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url('SourceSerif4-Italic-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'EsteFont Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('EsteFontPro-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'EsteFont Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('EsteFontPro-Bold.woff2') format('woff2');
+}

@@ -36,7 +36,8 @@ The palette and type here are the ones 626labs.dev and the apps actually ship. T
 │   └── estefont-pro-inline.css  ← the hand as data URIs, for pages that can't load files
 ├── assets/
 │   ├── 626Labs-logo.png       ← primary logo lockup
-│   └── dashboard-reference.png
+│   ├── dashboard-reference.png
+│   └── Logos/                 ← the 626Labs wordmark in Este's hand: wordmark, signature, 626 mark, favicon
 ├── preview/                   ← Design System tab cards (one concept per card)
 │   ├── logo.html
 │   ├── colors-brand.html
@@ -136,7 +137,7 @@ empower, leverage, seamlessly, unlock, unleash, best-in-class, robust solution, 
 - **Body / UI**: **Inter**. Workhorse, high legibility at small sizes.
 - **Mono**: **JetBrains Mono** — 626 Labs ships developer tools; code fragments are first-class citizens in the UI.
 - **Serif (reading layer only)**: **Source Serif 4**, via `editorial.css`, for long-form theses and Field Notes.
-- **Hand**: **EsteFont Pro** (`--font-hand`), Este's own handwriting, Regular and Bold. One rule: **Este's own words, in his hand.** Founding and pull quotes in his voice, sign-offs ("— Este"), a personal note on a product page. Never body copy, UI labels, buttons, or anyone else's words; never italic or letter-spaced (the slant and spacing are drawn in). The hand's x-height is 0.45em, so set it about 1.2x the size the surrounding type would use, and never below 24px. Bold at display size; Regular for quotes. Spec card: `preview/type-hand.html`.
+- **Hand**: **EsteFont Pro** (`--font-hand`), Este's own handwriting, Regular and Bold. One rule: **Este's own words, in his hand.** Founding and pull quotes in his voice, sign-offs ("— Este"), a personal note on a product page. Never body copy, UI labels, buttons, or anyone else's words; never italic or letter-spaced (the slant and spacing are drawn in). The hand's x-height is 0.45em, so set it about 1.2x the size the surrounding type would use, and never below 24px. Bold at display size; Regular for quotes. Spec card: `preview/type-hand.html`. The one exception is the **wordmark**: "626Labs" in the hand is the company's signature and works as a logo (see *Wordmark* below).
 - **Scale**: 1.200 ratio, clamped for responsive (`clamp(32px, 4.2vw, 48px)` for h1).
 
 ### Backgrounds
@@ -212,6 +213,21 @@ empower, leverage, seamlessly, unlock, unleash, best-in-class, robust solution, 
 - **Default card**: `background: var(--bg-2); border: 1px solid var(--border-1); border-radius: var(--r-md); box-shadow: var(--inner-stroke);`
 - **On hover**: `border-color: var(--border-accent);` — no lift.
 - **Featured card**: add `--brand-gradient-glow` as a layered background behind the content and a 1px cyan border.
+
+---
+
+## Wordmark
+
+"626Labs" written in Este's hand, with "LLC" set in the system type. It's the signature on the company: the hexagon logo (`assets/626Labs-logo.png`) is the mark, the wordmark is the name.
+
+- **Use the files, don't retype it.** The SVGs in `assets/Logos/` are outlined, so they render the same everywhere with no font loaded. Typing "626Labs" in `--font-hand` is fine for a one-off mock, never for shipped work.
+- **The lockup:** "626Labs" in EsteFont Pro Bold, "LLC" in Space Grotesk 600 at about a third of the hand's size, baseline-aligned, a gap of about 0.13x the hand's size. "LLC" is never in the hand.
+- **Inks:** `ink-0` on the navy grounds (`-dark`), `brand-navy-deep` on light paper (`-light`). The cyan to magenta duo (`-duo`) is for dark marquee moments only, one per page.
+- **Size:** the full lockup at 40px tall or more, so "LLC" stays legible. Below that, use the signature without "LLC" (`626labs-signature-bold-*.svg`), never below 24px tall. Smaller still (avatars, tab icons): the `626-mark-bold-*.svg` or `626-favicon.svg`.
+- **Weights:** Bold is the default everywhere. Regular (`*-regular-*.svg`) is the lighter, everyday hand for quieter surfaces, same 24px minimum. `assets/Logos/README.md` lists every file.
+- **Clear space:** keep the height of the "6" clear on every side.
+- **Never:** stretch, track, italicize, outline, add a glow other than `--glow-duo`, recolor outside the three inks, or set it over busy imagery.
+- **Where it goes:** cover and hero lockups, splash screens, the footer signature, merch. In running prose and UI the name is still plain `626 Labs`.
 
 ---
 

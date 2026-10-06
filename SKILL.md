@@ -9,7 +9,7 @@ Read the `README.md` file within this skill, and explore the other available fil
 - `colors_and_type.css` — foundational tokens (colors, type, spacing, motion, shadows/glows)
 - `editorial.css` — the light reading layer for theses and Field Notes (Source Serif 4)
 - `fonts/` — the brand faces as woff2 with `fonts.css`; `estefont-pro-inline.css` inlines the hand for pages that can't load files
-- `assets/` — logo + reference imagery
+- `assets/` — logo + reference imagery; `assets/Logos/` holds the 626Labs wordmark in Este's hand (wordmark, signature, 626 mark, favicon) as outlined SVGs, rules in README > Wordmark
 - `preview/` — small spec cards for each token group
 - `ui_kits/dashboard/` — The Lab Dashboard (Agent OS) recreation — React + CSS
 

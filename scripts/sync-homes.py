@@ -41,7 +41,10 @@ LIVE = SEAT / LIVE_REL
 PLUGIN_REPO = HOME / "Projects/626labs-plugin"
 PLUGIN_SKILL = PLUGIN_REPO / "plugins/626labs/skills/design"
 PLUGIN_MANIFEST = PLUGIN_REPO / "plugins/626labs/.claude-plugin/plugin.json"
-HUB_CSS = HOME / "Projects/626labs-hub/Design/colors_and_type.css"
+PLUGIN_SKILL_REL = "plugins/626labs/skills/design"
+HUB_REPO = HOME / "Projects/626labs-hub"
+HUB_CSS_REL = "Design/colors_and_type.css"
+HUB_CSS = HUB_REPO / HUB_CSS_REL
 
 # Never copied into the plugin home: SKILL.md carries per-home frontmatter
 # (standalone `626labs-design` vs plugin-namespaced `design`); the rest are
@@ -65,6 +68,17 @@ def git(repo, *args, check=True):
 
 def norm(p: Path) -> bytes:
     return p.read_bytes().replace(b"\r\n", b"\n")
+
+
+def at_main(repo: Path, rel: str):
+    """A file's bytes on the repo's origin/main, or None if absent there.
+
+    Drift is judged against what is published, not against whatever branch a
+    working tree happens to have checked out: another session's feature
+    branch in the plugin or hub checkout made --check report false drift
+    (2026-10-06, hub #197)."""
+    r = subprocess.run(["git", "-C", str(repo), "show", f"origin/main:{rel}"], capture_output=True)
+    return r.stdout.replace(b"\r\n", b"\n") if r.returncode == 0 else None
 
 
 def payload_files():
@@ -148,9 +162,9 @@ def check_live():
 
 
 def check_plugin():
+    git(PLUGIN_REPO, "fetch", "origin", "--quiet")
     stale = [f for f in payload_files()
-             if not (PLUGIN_SKILL / f).exists()
-             or norm(CANONICAL / f) != norm(PLUGIN_SKILL / f)]
+             if at_main(PLUGIN_REPO, f"{PLUGIN_SKILL_REL}/{f}") != norm(CANONICAL / f)]
     if stale:
         note("plugin", f"payload drift: {', '.join(stale)}")
     else:
@@ -160,7 +174,8 @@ def check_plugin():
 
 def check_hub():
     can = css_tokens((CANONICAL / "colors_and_type.css").read_text(encoding="utf-8"))
-    hub = css_tokens(HUB_CSS.read_text(encoding="utf-8"))
+    git(HUB_REPO, "fetch", "origin", "--quiet")
+    hub = css_tokens((at_main(HUB_REPO, HUB_CSS_REL) or b"").decode("utf-8"))
     missing = sorted(set(can) - set(hub))
     changed = sorted(k for k in set(can) & set(hub) if can[k].strip() != hub[k].strip())
     if missing or changed:
@@ -206,6 +221,10 @@ def apply_all(push: bool):
 
     # 3. plugin: copy payload, bump patch on change
     stale = check_plugin()
+    branch = git(PLUGIN_REPO, "rev-parse", "--abbrev-ref", "HEAD").stdout.strip()
+    if stale and (branch != "main" or dirty_tracked(PLUGIN_REPO)):
+        sys.exit(f"ABORT: the plugin checkout is on '{branch}' (or has tracked changes); "
+                 "sync it from a worktree on origin/main, or check out main first.")
     if stale:
         for f in stale:
             dest = PLUGIN_SKILL / f

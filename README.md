@@ -37,7 +37,9 @@ The palette and type here are the ones 626labs.dev and the apps actually ship. T
 ├── assets/
 │   ├── 626Labs-logo.png       ← primary logo lockup
 │   ├── dashboard-reference.png
-│   └── Logos/                 ← the 626Labs wordmark in Este's hand: wordmark, signature, 626 mark, favicon
+│   ├── Logos/                 ← the 626Labs wordmark in Este's hand: wordmark, signature, 626 mark, favicon
+│   ├── site-themes/           ← 626labs.dev in each monthly theme (reference, not the brand)
+│   └── titles/                ← each theme's "626 Labs" title + multiverse.json / multiverse.html
 ├── preview/                   ← Design System tab cards (one concept per card)
 │   ├── logo.html
 │   ├── colors-brand.html
@@ -276,6 +278,8 @@ Treatments are opt-in visual modes layered over the base tokens — same palette
 ### The site's monthly themes
 
 626labs.dev wears a new theme each month (Phosphor Blueprint in September, The Slate Broadsheet in October, Cyan Fade in November); retired ones freeze at dated URLs. Those themes live in the hub repo and are the site's dress, not the brand. Don't copy a month's look into a product as if it were the system. What carries across every theme: the cyan and magenta pair, the tagline, the voice, and Este's words in his hand.
+
+A dated record of each month lives in `assets/site-themes/` (desktop and mobile captures). `assets/titles/` keeps the "626 Labs" title as each theme set it, with `multiverse.json` (each version's font, weights, tracking, inks and ground) and `multiverse.html`, which flips through them and ends on the hand wordmark. Add a row to `multiverse.json` when a theme rotates in.
 
 ### Phosphor Blueprint (adopted 2026-07-07)
 

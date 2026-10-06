@@ -1,0 +1,94 @@
+{
+  "$comment": "The 626 Labs title lockup as each monthly site theme set it. For a 'multiverse' wordmark that flips through every version. Captured 2026-10-06 from the live site, the September archive, and a local render of Cyan Fade. image = 3x crop on the theme's own ground.",
+  "universes": [
+    {
+      "slug": "phosphor-blueprint",
+      "name": "Phosphor Blueprint",
+      "month": "2026-09",
+      "status": "archived",
+      "thesis": "The drawing is the monitor.",
+      "liveUrl": "https://626labs.dev/themes/archive/2026-09/",
+      "role": "nav wordmark",
+      "text": "626Labs",
+      "image": "phosphor-blueprint-title.png",
+      "fontFamily": "\"Space Grotesk\", Inter, system-ui, sans-serif",
+      "fontSize": "15px",
+      "fontStretch": "100%",
+      "letterSpacing": "-0.15px",
+      "lineHeight": "23.25px",
+      "color": "#e8f2ff",
+      "textShadow": null,
+      "ground": "#090909",
+      "parts": [
+        {
+          "text": "626",
+          "fontWeight": 600,
+          "color": "#17d4fa"
+        },
+        {
+          "text": "Labs",
+          "fontWeight": 600,
+          "color": "#e8f2ff"
+        }
+      ],
+      "glyph": "hex outline with cyan-to-magenta stroke, cyan core ring, magenta circuit ticks (24px SVG, before the text); markup in html",
+      "html": "<a class=\"nav-brand\" href=\"#top\">\n      <svg viewBox=\"0 0 32 32\" width=\"24\" height=\"24\" aria-hidden=\"true\">\n        <defs>\n          <linearGradient id=\"navg\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n            <stop offset=\"0%\" stop-color=\"#17d4fa\"></stop>\n            <stop offset=\"100%\" stop-color=\"#f22f89\"></stop>\n          </linearGradient>\n        </defs>\n        <polygon points=\"16,3 28,10 28,22 16,29 4,22 4,10\" fill=\"none\" stroke=\"url(#navg)\" stroke-width=\"1.6\"></polygon>\n        <circle cx=\"16\" cy=\"16\" r=\"3.2\" fill=\"none\" stroke=\"#17d4fa\" stroke-width=\"1.3\"></circle>\n        <path d=\"M8 16 L12.5 16 M19.5 16 L24 16 M16 8.5 L16 12.5 M16 19.5 L16 23.5\" stroke=\"#f22f89\" stroke-width=\"1.3\" stroke-linecap=\"round\"></path>\n      </svg>\n      <span><span class=\"brand-626\">626</span><span class=\"brand-labs\">Labs</span></span>\n    </a>"
+    },
+    {
+      "slug": "slate-broadsheet",
+      "name": "The Slate Broadsheet",
+      "month": "2026-10",
+      "status": "live",
+      "thesis": "The page is printed, not lit.",
+      "liveUrl": "https://626labs.dev/",
+      "role": "masthead title",
+      "text": "626 Labs",
+      "image": "slate-broadsheet-title.png",
+      "fontFamily": "\"Space Grotesk\", Inter, system-ui, sans-serif",
+      "fontSize": "124px",
+      "fontStretch": "100%",
+      "letterSpacing": "-4.34px",
+      "lineHeight": "111.6px",
+      "color": "#f7f5f0",
+      "textShadow": "rgba(15, 31, 49, 0.55) 0px 1px 0px",
+      "ground": "#3d4552",
+      "parts": [
+        {
+          "text": "626 ",
+          "fontWeight": 500
+        },
+        {
+          "text": "Labs",
+          "fontWeight": 300
+        }
+      ],
+      "html": "<p class=\"masthead-title press\"><a href=\"#top\">626 <span class=\"lab\">Labs</span></a></p>"
+    },
+    {
+      "slug": "cyan-fade",
+      "name": "Cyan Fade",
+      "month": "2026-11",
+      "status": "queued (rotates in 2026-11-01)",
+      "thesis": "The brand is the ground, and the ground fades to paper.",
+      "liveUrl": null,
+      "role": "nav wordmark",
+      "text": "626 Labs",
+      "image": "cyan-fade-title.png",
+      "fontFamily": "Archivo, \"Arial Black\", Arial, sans-serif",
+      "fontSize": "28px",
+      "fontStretch": "125%",
+      "letterSpacing": "-0.42px",
+      "lineHeight": "25.76px",
+      "color": "#0f1f31",
+      "textShadow": null,
+      "ground": "#159ebe",
+      "parts": [
+        {
+          "text": "626 Labs",
+          "fontWeight": 900
+        }
+      ],
+      "html": "<a class=\"wordmark disp\" href=\"#top\">626 Labs</a>"
+    }
+  ]
+}
